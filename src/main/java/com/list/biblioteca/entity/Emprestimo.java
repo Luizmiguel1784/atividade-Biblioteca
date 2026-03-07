@@ -13,9 +13,9 @@ public class Emprestimo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long emprestimoId;
     private Date dataEmprestimo;
-    private Date dataDevoluçao;
+    private Date dataDevolucao;
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;

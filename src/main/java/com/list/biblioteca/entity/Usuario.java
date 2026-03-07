@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 
@@ -16,6 +18,8 @@ public class Usuario {
     private String nome;
     private String email;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Emprestimo> emprestimos;
     @OneToOne(mappedBy = "usuario",cascade = CascadeType.ALL)
     private CarteiraBiblioteca carteira;
 }

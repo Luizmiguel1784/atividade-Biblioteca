@@ -13,5 +13,5 @@ import java.util.Date;
 public class EmprestimoRequest {
 
     private Date dataEmprestimo;
-    private Date dataDevoluao;
+    private Date dataDevolucao;
 }
