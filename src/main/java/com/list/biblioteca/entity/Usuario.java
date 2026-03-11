@@ -21,5 +21,5 @@ public class Usuario {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Emprestimo> emprestimos;
     @OneToOne(mappedBy = "usuario",cascade = CascadeType.ALL)
-    private CarteiraBiblioteca carteira;
+    private Carteira carteira;
 }

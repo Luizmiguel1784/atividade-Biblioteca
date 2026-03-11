@@ -51,6 +51,7 @@ public class UsuarioService {
     }
 
 
+    
     public UsuarioResponse buscarPorId(Long id) {
 
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(()-> new RuntimeException("Usuario não encotrado"));
@@ -60,11 +61,14 @@ public class UsuarioService {
                 usuario.getId());
     }
 
+
     //delete
     public void deletarUsuario(Long id) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(()-> new RuntimeException("Usuario não encontrado"));
         usuarioRepository.delete(usuario);
     }
+
+
     //Put
     public UsuarioResponse atualizarUsuario(Long id, UsuarioRequest usuarioRequest) {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(()-> new RuntimeException("Usuario não encontrado"));

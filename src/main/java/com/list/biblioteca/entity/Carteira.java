@@ -9,11 +9,11 @@ import java.util.Date;
 @Setter
 
 @Entity
-public class CarteiraBiblioteca {
+public class Carteira {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long numeroCarteira;
+    private long nCarteira;
     private Date dataEmissao;
     private boolean isValid ;
     @OneToOne
