@@ -14,31 +14,34 @@ public class CarteiraService {
     private final CarteiraRepository  carteiraRepository;
     private final UsuarioRepository usuarioRepository;
 
-
     public CarteiraService(CarteiraRepository carteiraRepository, UsuarioRepository usuarioRepository) {
         this.carteiraRepository = carteiraRepository;
         this.usuarioRepository = usuarioRepository;
     }
 
+
     //Post
-    public Carteira criarCarteira(Long id, CarteiraRequest carteira){
 
-        Usuario usuario = usuarioRepository.findById(id).orElseThrow(()->new RuntimeException("Usuario não encontrado"));
+    public CarteiraResponse criarCarteria(Long id, CarteiraRequest carteirarequest){
 
-        Carteira Carteira = new Carteira();
+        Carteira carteira = new Carteira();
 
-        Carteira.setUsuario(usuario);
-        Carteira.setDataEmissao(Carteira.getDataEmissao());
-        carteiraRepository.save(Carteira);
+        carteira.setDataEmissao(carteirarequest.getDataEmissao());
+        carteira.setUsuario(carteira.getUsuario());
+        carteiraRepository.save(carteira);
 
         CarteiraResponse carteiraResponse = new CarteiraResponse(
-                Carteira.getNCarteira(),
-                Carteira.getDataEmissao(),
-                Carteira.isValid(),
-                Carteira.getUsuario()
+          carteira.getNCarteira(),
+          carteira.getDataEmissao(),
+          carteira.isValid(),
+          carteira.getUsuario()
+
 
         );
-                return carteiraResponse;
+        return carteiraResponse;
 
     }
-}
+
+
+    }
+
