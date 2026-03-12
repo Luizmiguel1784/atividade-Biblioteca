@@ -25,9 +25,9 @@ public class EmprestimoService {
 
 
     //Post
-    public Emprestimo criarEmprestimo(Long id, EmprestimoRequest request){
+    public EmprestimoResponse criarEmprestimo(Long usuarioid, EmprestimoRequest request){
 
-    Usuario usuario = usuarioRepository.findById(id).
+    Usuario usuario = usuarioRepository.findById(usuarioid).
             orElseThrow(()->new RuntimeException("Usuario não encontrado"));
 
         Emprestimo Emprestimo = new Emprestimo();
@@ -44,7 +44,7 @@ public class EmprestimoService {
                 Emprestimo.getDataDevolucao(),
                 Emprestimo.getUsuario()
         );
-        return Emprestimo;
+        return EmprestimoResponse;
     }
 
 

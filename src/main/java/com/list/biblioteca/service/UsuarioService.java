@@ -24,13 +24,14 @@ public class UsuarioService {
         }
         Usuario usuario = new Usuario();
         usuario.setEmail(usuarioRequest.getEmail());
-        usuario.setEmail(usuarioRequest.getNome());
+        usuario.setNome(usuarioRequest.getNome());
         usuarioRepository.save(usuario);
         //Get
         UsuarioResponse usuarioResponse = new UsuarioResponse(
                 usuario.getNome(),
                 usuario.getEmail(),
-                usuario.getId()
+                usuario.getId(),
+                usuario.getCarteira()
                 );
         return usuarioResponse;
     }
@@ -45,7 +46,8 @@ public class UsuarioService {
                 usuario -> new UsuarioResponse(
                         usuario.getNome(),
                         usuario.getEmail(),
-                        usuario.getId()
+                        usuario.getId(),
+                        usuario.getCarteira()
                 )).toList();
 
     }
@@ -58,7 +60,8 @@ public class UsuarioService {
         return new UsuarioResponse(
                 usuario.getNome(),
                 usuario.getEmail(),
-                usuario.getId());
+                usuario.getId(),
+                usuario.getCarteira());
     }
 
 
@@ -79,7 +82,8 @@ public class UsuarioService {
         UsuarioResponse usuarioResponse = new UsuarioResponse(
                 usuario.getNome(),
                 usuario.getEmail(),
-                usuario.getId()
+                usuario.getId(),
+                usuario.getCarteira()
         );
         return usuarioResponse;
 

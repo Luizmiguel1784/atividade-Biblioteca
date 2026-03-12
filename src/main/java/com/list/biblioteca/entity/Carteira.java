@@ -17,6 +17,6 @@ public class Carteira {
     private Date dataEmissao;
     private boolean isValid ;
     @OneToOne
-    @MapsId
+   @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 }

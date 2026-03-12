@@ -3,7 +3,6 @@ package com.list.biblioteca.service;
 import com.list.biblioteca.dto.CarteiraRequest;
 import com.list.biblioteca.dto.CarteiraResponse;
 import com.list.biblioteca.entity.Carteira;
-import com.list.biblioteca.entity.Usuario;
 import com.list.biblioteca.repositories.CarteiraRepository;
 import com.list.biblioteca.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -22,26 +21,29 @@ public class CarteiraService {
 
     //Post
 
-    public CarteiraResponse criarCarteria(Long id, CarteiraRequest carteirarequest){
+    public CarteiraResponse criarCarteira(Long usuarioId, CarteiraRequest carteiraRequest){
+
+        var usuario = usuarioRepository.findById(usuarioId)
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
 
         Carteira carteira = new Carteira();
 
-        carteira.setDataEmissao(carteirarequest.getDataEmissao());
-        carteira.setUsuario(carteira.getUsuario());
+        carteira.setDataEmissao(carteiraRequest.getDataEmissao());
+        carteira.setValid(true);
+        carteira.setUsuario(usuario);
+
         carteiraRepository.save(carteira);
 
-        CarteiraResponse carteiraResponse = new CarteiraResponse(
-          carteira.getNCarteira(),
-          carteira.getDataEmissao(),
-          carteira.isValid(),
-          carteira.getUsuario()
-
-
+        return new CarteiraResponse(
+                carteira.getNCarteira(),
+                carteira.getDataEmissao(),
+                carteira.isValid(),
+                carteira.getUsuario()
         );
-        return carteiraResponse;
-
     }
 
+}
 
-    }
+
+
 
