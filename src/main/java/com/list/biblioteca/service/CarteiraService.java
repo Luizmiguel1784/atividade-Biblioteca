@@ -21,11 +21,16 @@ public class CarteiraService {
 
     //Post
 
-    public CarteiraResponse criarCarteira(Long usuarioId, CarteiraRequest carteiraRequest){
+    public CarteiraResponse criarCarteira(Long Id, CarteiraRequest carteiraRequest){
 
-        var usuario = usuarioRepository.findById(usuarioId)
+        var usuario = usuarioRepository.findById(Id)
                 .orElseThrow(() -> new RuntimeException("Usuario não encontrado"));
 
+        if(usuario.getCarteira() != null){
+
+        throw new RuntimeException("Usuario já possui carteira");
+        }
+        
         Carteira carteira = new Carteira();
 
         carteira.setDataEmissao(carteiraRequest.getDataEmissao());
